@@ -1,0 +1,60 @@
+<div class="email-verify">
+    <form [formGroup]="verifyForm" (ngSubmit)="EmailVerify()">
+        <h1>ვერიფიკაცია</h1>
+        <p-toast />
+
+        <div>
+            <div class="input-box">
+                <label for="email-sign-in">მეილი:</label>
+                <input id="email-sign-in" type="email" formControlName="email" />
+            </div>
+            <div *ngIf="
+            verifyForm.get('email').invalid && verifyForm.get('email').touched
+          ">
+                <small *ngIf="verifyForm.get('email').hasError('required')">შეავსეთ მეილი</small>
+                <small *ngIf="verifyForm.get('email').hasError('email')">შეიყვანეთ ვალიდური მეილი</small>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="input-box">
+                <label for="name-sign-in">სახელი:</label>
+                <input id="name-sign-in" type="text" formControlName="name" />
+            </div>
+            <div *ngIf="verifyForm.get('name').invalid && verifyForm.get('name').touched">
+                <small *ngIf="verifyForm.get('name')?.hasError('required')">
+                    სახელი სავალდებულოა
+                </small>
+
+                <small *ngIf="verifyForm.get('name')?.hasError('minlength')">
+                    სახელი უნდა შედგებოდეს მინიმუმ 2 სიმბოლოსგან
+                </small>
+            </div>
+        </div>
+
+        <div>
+            <div class="input-box">
+                <label for="surname-sign-in">გვარი:</label>
+                <input id="surname-sign-in" type="text" formControlName="surname" />
+            </div>
+            <div *ngIf="verifyForm.get('surname').invalid && verifyForm.get('surname').touched">
+                <small *ngIf="verifyForm.get('surname')?.hasError('required')">
+                    გვარი სავალდებულოა
+                </small>
+
+                <small *ngIf="verifyForm.get('surname')?.hasError('minlength')">
+                    გვარი უნდა შედგებოდეს მინიმუმ 2 სიმბოლოსგან
+                </small>
+            </div>
+            <a routerLink="/sign-in">ავტორიზაცია</a>
+            <div class="card flex justify-content-center" *ngIf="isSpin">
+                <p-progress-spinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+                    animationDuration=".5s" style="width: 100%; height: 45px"; >
+                </p-progress-spinner>
+            </div>
+        </div>
+
+        <div class="sign-in-btn"><button type="submit">გაგზავნა</button></div>
+    </form>
+</div>

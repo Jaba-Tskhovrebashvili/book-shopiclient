@@ -1,0 +1,48 @@
+<div class="sign-up">
+    <form [formGroup]="SignUpForm" (ngSubmit)="AdminRegister()">
+        <h1>რეგისტრაცია</h1>
+        <p-toast />
+        <div>
+
+
+            <div>
+                <div class="input-box">
+                    <label for="password-sign-up">პაროლი:</label>
+                    <input id="password-sign-up" formControlName="password" type="password" />
+                </div>
+                <div *ngIf="
+            SignUpForm.get('password').invalid &&
+            SignUpForm.get('password').touched
+          ">
+                    <small *ngIf="SignUpForm.get('password').hasError('required')">შეიყვანეთ პაროლი</small>
+                    <small *ngIf="SignUpForm.get('password').hasError('pattern')">პაროლი უნდა იყოს მინიმუმ 8 ასოსგან
+                        შემდგარი,უნდა შეიცავდეს დიდ და
+                        პატარა ასოს და სიმბოლოს</small>
+                </div>
+            </div>
+
+            <div>
+                <div class="input-box">
+                    <label for="confirmpassword-sign-in">გაიმეორეთ პაროლი:</label>
+                    <input id="confirmpassword-sign-in" formControlName="confirmPassword" type="password" />
+                </div>
+                <div *ngIf="
+            
+            SignUpForm.get('confirmPassword').touched
+          ">
+                    <small *ngIf="SignUpForm.get('confirmPassword')?.touched &&
+    SignUpForm.get('confirmPassword')?.value !== SignUpForm.get('password')?.value
+">გაიმეორეთ პაროლი სწორად</small>
+
+                </div>
+            </div>
+            <a routerLink="/sign-in">ავტორიზაცია</a>
+            <div class="card flex justify-content-center" *ngIf="isSpin">
+                <p-progress-spinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+                    animationDuration=".5s" style="width: 100%; height: 45px" ;>
+                </p-progress-spinner>
+            </div>
+        </div>
+        <div class="sign-in-btn"><button type="submit">შესვლა</button></div>
+    </form>
+</div>
