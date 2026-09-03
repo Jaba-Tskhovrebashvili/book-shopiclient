@@ -1,0 +1,15 @@
+<p-select [options]="author_sex" [(ngModel)]="selectedSex" optionLabel="sex" [filter]="true" [showClear]="true"
+    placeholder="Select a Author Sex" class="w-full md:w-56" [virtualScroll]="true" [virtualScrollItemSize]="20"
+    (ngModelChange)="onAuthorSexChange($event)">
+    <ng-template #selectedItem let-selectedOption>
+        <div class="flex items-center gap-2">
+            <div>{{ selectedOption.sex }}</div>
+        </div>
+    </ng-template>
+
+    <ng-template let-authorSex #item>
+        <div class="flex items-center gap-2">
+            <div>{{ authorSex.sex }}</div>
+        </div>
+    </ng-template>
+</p-select>

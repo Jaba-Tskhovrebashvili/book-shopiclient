@@ -1,1 +1,61 @@
-<p>home works!</p>
+<app-header />
+
+<section class="home">
+
+    <div class="search-container">
+
+        <div class="card flex justify-center select-cont">
+
+            <app-country-select (countryChange)="onCountryChange($event)"></app-country-select>
+
+            <app-city-select (cityChange)="onCityChange($event)"></app-city-select>
+
+            <app-admin-sex-select (authorSexChange)="onAuthorSexChange($event)"></app-admin-sex-select>
+            <app-search (SearchChange)="onSearchChange($event)"></app-search>
+        </div>
+    </div>
+
+    <div>
+        <p-confirmpopup /> <p-toast />
+
+        <p-table [value]="this.authors" [tableStyle]="{ 'min-width': '40rem' }">
+            <ng-template #header>
+                <tr>
+                    <th>სახელი</th>
+                    <th>გვარი</th>
+                    <th>Email</th>
+                    <th>მობილური</th>
+                    <th>პირადი ნომერი</th>
+                    <th>სქესი</th>
+                    <th>დაბადების თარიღი</th>
+                    <th>ქვეყანა</th>
+                    <th>ქალაქი</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-author>
+                <tr>
+                    <td>{{ author.name }}</td>
+                    <td>{{ author.surname }}</td>
+                    <td>{{ author.email }}</td>
+                    <td>{{ author.phoneNumber }}</td>
+                    <td>{{ author.personalNumber }}</td>
+                    <td>{{ author.sex }}</td>
+                    <td>{{ author.birthDate | date:'longDate' }}</td>
+                    <td>{{ author.country }}</td>
+                    <td>{{ author.city }}</td>
+                    <td style="display: flex; gap: 1rem;">
+                        <span style="cursor: pointer;"><i class="pi pi-user-edit"
+                                style="font-size: 1rem; color: blue;"></i></span>
+                        <!-- <p-button (click)="confirm2($event)" label="Delete" severity="danger" [outlined]="true" /> -->
+                        <span style="cursor: pointer;" (click)="confirm2($event,author.id)" severity="danger"><i class="pi pi-user-minus"
+                                style="font-size: 1rem;color: red;"></i></span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]=[totalPage] />
+
+</section>

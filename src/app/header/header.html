@@ -1,0 +1,19 @@
+<header class="header">
+    <div class="header-content">
+        <div class="brand">
+            <a routerLink="/home">
+                MyApp
+            </a>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar"> {{ this.userServiceService.myUser.name?.charAt(0)?.toUpperCase() }} </div> <span
+                class="user-name"> {{ this.userServiceService.myUser.name }}
+            </span>
+        </div>
+    </div>
+
+    <div class="log-out">
+        <span class="logo-name" (click)="AdminLogout()"> Log Out
+        </span>
+    </div>
+</header>
