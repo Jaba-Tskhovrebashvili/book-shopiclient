@@ -1,0 +1,19 @@
+<p-select [options]="producttypes" [(ngModel)]="selectedProductType" optionLabel="name" [filter]="true"
+    [showClear]="true" placeholder="Select a Type" class="w-full md:w-56" [virtualScroll]="true"
+    [virtualScrollItemSize]="30" (ngModelChange)="onTypeChange($event)" (onFilter)="onTypeFilter($event)">
+    <ng-template #selectedItem let-selectedOption>
+        <div class="flex items-center gap-2">
+            <div>{{ selectedOption.name | slice:0:10 }}
+                <span *ngIf="selectedOption.name.length > 10">...</span>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template let-type #item>
+        <div class="flex items-center gap-2">
+            <div>{{ type.name | slice:0:10 }}
+                <span *ngIf="type.name.length > 10">...</span>
+            </div>
+        </div>
+    </ng-template>
+</p-select>

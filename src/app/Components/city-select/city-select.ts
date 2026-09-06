@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthorServiceService } from '../../Services/author-service.service';
 })
 export class CitySelect implements OnInit {
   cities: any[] = [];
-
+  @Input() city!: string;
   cityPage: number = 1;
   totalCityPage!: number;
   citySearch: string = '';
@@ -26,7 +26,12 @@ export class CitySelect implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.GetCities('', this.cityPage);
+    if (this.city) {
+      this.GetCities(this.city, this.cityPage);
+    } else {
+      this.GetCities('', this.cityPage);
+    }
+
   }
 
   myScrollHandler = (event: any) => {
@@ -71,6 +76,11 @@ export class CitySelect implements OnInit {
 
         }
 
+
+        if (this.city) {
+          this.selectedcity = response.cities.cities[0];
+        }
+
         this.totalCityPage =
           response.cities.totalPages;
 
@@ -103,6 +113,20 @@ export class CitySelect implements OnInit {
   }
 
   onCityChange(event: any) {
+
+    if (this.city) {
+      this.city = '';
+      this.citySearch = '';
+      this.cityPage = 1;
+
+      this.GetCities('', 1);
+       this.cityChange.emit(event);
+      return;
+    }
+    if (event == null) {
+      this.citySearch = "";
+      this.GetCities(this.citySearch, this.cityPage);
+    }
 
     this.selectedcity = event;
 

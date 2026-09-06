@@ -1,14 +1,19 @@
 <header class="header">
     <div class="header-content">
         <div class="brand">
-            <a routerLink="/home">
+            <a [routerLink]="['/home']">
                 MyApp
             </a>
         </div>
         <div class="user-info">
-            <div class="user-avatar"> {{ this.userServiceService.myUser.name?.charAt(0)?.toUpperCase() }} </div> <span
-                class="user-name"> {{ this.userServiceService.myUser.name }}
-            </span>
+            <a [routerLink]="['/home']">
+                <div class="user-avatar"> {{ this.userServiceService.myUser.name?.charAt(0)?.toUpperCase() }} </div>
+                <span class="user-name"> {{ this.userServiceService.myUser.name }}
+                </span>
+            </a>
+            <a [routerLink]="['/products']">
+                <span>Products</span>
+            </a>
         </div>
     </div>
 

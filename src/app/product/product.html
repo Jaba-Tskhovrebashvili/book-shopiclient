@@ -1,0 +1,57 @@
+<app-header />
+
+<section class="product">
+    <div class="search-container">
+        <div class="card flex justify-center select-cont">
+            <app-product-type-select (productTypeChange)="onProductType($event)" />
+            <app-publish-select (publishTypeChange)="onPublishType($event)" />
+            <app-search (SearchChange)="onSearchChange($event)"></app-search>
+            <span style="color: aqua;cursor: pointer;" (click)="OnEditVisible()"><i class="pi pi-address-book"
+                    style="font-size: 2rem"></i></span>
+        </div>
+    </div>
+    <p-confirmpopup /> <p-toast />
+    <div>
+        <p-table [value]="this.products" [tableStyle]="{ 'min-width': '40rem' }" *ngIf="this.products.length!=0">
+            <ng-template #header>
+                <tr>
+                    <th>სახელი</th>
+                    <th>ანოტაცია</th>
+                    <th>ტიპი</th>
+                    <th>ISBN</th>
+                    <th>გამოშვების თარიღი</th>
+                    <th>გამომცემლობა</th>
+                    <th>გვერდების რაოდენობა</th>
+                    <th>მისამართი</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-product>
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.annotation | slice:0:50 }}
+                        <span *ngIf="product.annotation.length > 50">...</span>
+                    </td>
+                    <td>{{ product.product_Type?.name }}</td>
+                    <td>{{ product.isbn }}</td>
+                    <td>{{ product.release_date | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ product.publishing_house?.name }}</td>
+                    <td>{{ product.page_quantity }}</td>
+                    <td>{{ product.address }}</td>
+                    <td style="display: flex; gap: 1rem;">
+                        <span style="cursor: pointer;"(click)="OnEditProductVisible(product)"><i class="pi pi-file-edit"
+                                style="font-size: 1rem; color: blue;"></i></span>
+                        <!-- <p-button (click)="confirm2($event)" label="Delete" severity="danger" [outlined]="true" /> -->
+                        <span style="cursor: pointer;" severity="danger" (click)="confirm2($event,product.id)"><i
+                                class="pi pi-delete-left" style="font-size: 1rem;color: red;"></i></span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]=[totalPage] />
+</section>
+
+<app-add-product *ngIf="editVisible" (OnEditVisible)="OnEditVisible()" />
+<app-edit-product *ngIf="isEdirProduct" [ProductValue]="this.ProductValue" 
+(EditProductVisible)="onVisible()"  />

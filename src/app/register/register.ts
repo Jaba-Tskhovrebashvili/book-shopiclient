@@ -57,7 +57,6 @@ export class Register implements OnInit {
 
     this.userServiceService.Register(this.passwordReq, String(this.token)).subscribe({
       next: (response) => {
-        console.log("response", response)
         this.messageService.add({
           severity: 'success',
           summary: 'Success',

@@ -1,0 +1,21 @@
+<div class="flex justify-center">
+    <p-select [options]="members" [(ngModel)]="selected" [multiple]="true" optionLabel="name" optionLabel="name"
+        [showClear]="true" [filter]="true" placeholder="Select Members" class="w-full"
+        [virtualScrollOptions]="{ onScroll: myScrollHandler }" [virtualScroll]="true" [virtualScrollItemSize]="30"
+        (onFilter)="onuserFilter($event)" (ngModelChange)="onSelectedChange($event)">
+        <ng-template let-member #item>
+            <div class="flex items-center gap-2">
+
+                <span>{{ member.name }}</span>
+            </div>
+        </ng-template>
+        <ng-template #selectedItem let-selectedOption>
+            <div class="flex flex-wrap gap-1">
+                @for (member of selected; track member.id) {
+                <p-chip [label]="getFirstName(member)" [removable]="true" (onRemove)="removeItem($event, member)"
+                    [pt]="{ root: { class: 'py-0!' }, label: { class: 'text-xs!' }}" />
+                }
+            </div>
+        </ng-template>
+    </p-select>
+</div>

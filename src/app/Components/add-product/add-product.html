@@ -1,0 +1,62 @@
+<div class="flex justify-center">
+    <p-dialog [(visible)]="isAddVisible" [modal]="true" header="პროდუქტის დამატება" [style]="{ width: '30rem' }"
+        (onHide)="changeVisible()">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div class="form-field">
+                <label pLabel for="name">სახელი</label>
+                <input pInputText id="name" [(ngModel)]="ProductValue.name" />
+            </div>
+            <div class="form-field">
+                <p-iftalabel>
+                    <textarea pTextarea id="description" [(ngModel)]="ProductValue.annotation" rows="4" cols="45"
+                        style="resize: none"></textarea>
+                    <label for="description">ანოტაცია</label>
+                </p-iftalabel>
+            </div>
+            <div class="form-field">
+                <label pLabel for="isbn">ISBN</label>
+                <input pInputText id="isbn" [(ngModel)]="ProductValue.isbn" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="birthday">ავტორი(ავტორები)</label>
+                <app-author-select (getAuthors)="ongetAuthors($event)" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="birthday">გამომცემლობა</label>
+                <app-publish-select (publishTypeChange)="onPublishType($event)" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="birthday">ტიპი</label>
+                <app-product-type-select (productTypeChange)="onProductType($event)" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="relieseDate">გამოცემის თარიღი</label>
+                <p-datepicker [(ngModel)]="ProductValue.release_date" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="address">მისამართი</label>
+                <input pInputText id="address" [(ngModel)]="ProductValue.address" />
+            </div>
+            <div class="form-field">
+                <label pLabel for="personalNumber">გვერდების რაოდენობა</label>
+                <p-inputnumber inputId="integeronly" class="ng-invalid ng-dirty"
+                    [(ngModel)]="ProductValue.page_quantity" />
+            </div>
+
+
+        </div>
+
+
+        <ng-template #footer>
+            <button type="button" pButton severity="secondary" variant="outlined"
+                (click)="changeVisible()">წაშლა</button>
+            <button type="button" pButton (click)="onSubmit()">დამატება</button>
+        </ng-template>
+    </p-dialog>
+</div>
+<p-toast />

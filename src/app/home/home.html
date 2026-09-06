@@ -12,6 +12,9 @@
 
             <app-admin-sex-select (authorSexChange)="onAuthorSexChange($event)"></app-admin-sex-select>
             <app-search (SearchChange)="onSearchChange($event)"></app-search>
+
+            <span style="color: aqua;cursor: pointer;" (click)="isAddvisibleFunction()"><i class="pi pi-user-plus"
+                    style="font-size: 2rem"></i></span>
         </div>
     </div>
 
@@ -34,7 +37,7 @@
             </ng-template>
             <ng-template #body let-author>
                 <tr>
-                    <td>{{ author.name }}</td>
+                    <td> <a [routerLink]="['/author-profile', author.id]">{{ author.name }}</a></td>
                     <td>{{ author.surname }}</td>
                     <td>{{ author.email }}</td>
                     <td>{{ author.phoneNumber }}</td>
@@ -44,11 +47,11 @@
                     <td>{{ author.country }}</td>
                     <td>{{ author.city }}</td>
                     <td style="display: flex; gap: 1rem;">
-                        <span style="cursor: pointer;"><i class="pi pi-user-edit"
+                        <span style="cursor: pointer;" (click)="onEditButton(author)"><i class="pi pi-user-edit"
                                 style="font-size: 1rem; color: blue;"></i></span>
                         <!-- <p-button (click)="confirm2($event)" label="Delete" severity="danger" [outlined]="true" /> -->
-                        <span style="cursor: pointer;" (click)="confirm2($event,author.id)" severity="danger"><i class="pi pi-user-minus"
-                                style="font-size: 1rem;color: red;"></i></span>
+                        <span style="cursor: pointer;" (click)="confirm2($event,author.id)" severity="danger"><i
+                                class="pi pi-user-minus" style="font-size: 1rem;color: red;"></i></span>
                     </td>
                 </tr>
             </ng-template>
@@ -59,3 +62,7 @@
     <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]=[totalPage] />
 
 </section>
+
+<app-add-uthor *ngIf="isAddVisible" (AddvisibleFunction)="isAddvisibleFunction()"></app-add-uthor>
+<app-edit-author [userProfile]="this.editUserProfile" [visible]="isEditVisible" (closeEdit)="this.closeEdit()"
+    *ngIf="isEditVisible" />

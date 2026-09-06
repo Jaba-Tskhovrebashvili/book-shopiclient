@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
 
 
@@ -8,7 +8,7 @@ import { AuthorServiceService } from '../../Services/author-service.service';
   styleUrl: './country-select.scss',
   templateUrl: './country-select.html',
 })
-export class CountrySelect implements OnInit { 
+export class CountrySelect implements OnInit {
 
   countries: any[] = [];
 
@@ -21,14 +21,24 @@ export class CountrySelect implements OnInit {
   isLoadingCountries = false;
 
   @Output() countryChange = new EventEmitter<any>();
-
+  @Input() country!: string;
   constructor(
     private authorServiceService: AuthorServiceService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.GetCountries('', this.countryPage);
+
+
+
+    if (this.country) {
+      this.GetCountries(this.country, this.countryPage);
+
+    } else {
+      this.GetCountries('', this.countryPage);
+    }
+
+
   }
 
   myScrollHandler = (event: any) => {
@@ -73,6 +83,10 @@ export class CountrySelect implements OnInit {
 
         }
 
+        if (this.country) {
+          this.selectedCountry = response.countries.countries[0];
+        }
+
         this.totalCountryPage =
           response.countries.totalPages;
 
@@ -105,6 +119,23 @@ export class CountrySelect implements OnInit {
   }
 
   onCountryChange(event: any) {
+
+    if (this.country) {
+      this.country = ""
+
+      this.country = '';
+      this.countrySearch = '';
+      this.countryPage = 1;
+
+      this.GetCountries("", this.countryPage);
+      this.countryChange.emit(event);
+      return;
+    }
+
+    if (event == null) {
+      this.countrySearch = "";
+      this.GetCountries(this.countrySearch, this.countryPage);
+    }
 
     this.selectedCountry = event;
 

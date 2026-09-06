@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class AdminSexSelect implements OnInit {
   selectedSex: any;
 
   @Output() authorSexChange = new EventEmitter<any>();
-
+  @Input() authorSex!: string;
   constructor(
     private authorServiceService: AuthorServiceService,
     private cdr: ChangeDetectorRef
@@ -31,6 +31,9 @@ export class AdminSexSelect implements OnInit {
       next: (response) => {
 
         this.author_sex = response.authorSex;
+        if (this.authorSex) {
+          this.selectedSex = response.authorSex.find((x: any) => x.sex == this.authorSex)
+        }
 
         this.cdr.detectChanges();
       },
@@ -44,6 +47,11 @@ export class AdminSexSelect implements OnInit {
   }
 
   onAuthorSexChange(event: any) {
+
+    if (this.authorSex) {
+      this.authorSex = ""
+      this.GetAuthorSex();
+    }
 
     this.selectedSex = event;
 

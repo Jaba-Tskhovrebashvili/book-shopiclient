@@ -1,7 +1,7 @@
 <p-select [options]="cities" [(ngModel)]="selectedcity" optionLabel="name" [filter]="true" [showClear]="true"
-    placeholder="Select a City" class="w-full md:w-56" [virtualScroll]="true" [virtualScrollItemSize]="20"
+    placeholder="Select a City" class="w-full md:w-56" [virtualScroll]="true" [virtualScrollItemSize]="30"
     [virtualScrollOptions]="{ onScroll: myScrollHandler }" (ngModelChange)="onCityChange($event)"
-    (onFilter)="onCityFilter($event)">
+    (onFilter)="onCityFilter($event)" style="z-index: 100;">
     <ng-template #selectedItem let-selectedOption>
         <div class="flex items-center gap-2">
             <div>{{ selectedOption.name }}</div>

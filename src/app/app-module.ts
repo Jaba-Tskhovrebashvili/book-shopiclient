@@ -4,11 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 
-import { Home } from './home/home';
-import { EmailVerify } from './email-verify/email-verify';
-import { Register } from './register/register';
-import { Authorisation } from './authorisation/authorisation';
-
 import { authorisationInterceptor } from './authorisation.interceptor';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -16,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { providePrimeNG } from 'primeng/config';
 import Lara from '@primeuix/themes/lara';
+
 
 @NgModule({
   declarations: [App],

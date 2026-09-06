@@ -1,0 +1,58 @@
+<div class="flex justify-center">
+    <p-dialog [(visible)]="visible" [modal]="true" header="პროფილის რედაქტირება" [style]="{ width: '26rem' }"
+        (onHide)="OnClose()">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div class="form-field">
+                <label pLabel for="name">Name</label>
+                <input pInputText id="name" [(ngModel)]="userProfile.name" />
+            </div>
+            <div class="form-field">
+                <label pLabel for="email">Email</label>
+                <input pInputText id="email" [(ngModel)]="userProfile.email" />
+            </div>
+            <div class="form-field">
+                <label pLabel for="surname">Surname</label>
+                <input pInputText id="surname" [(ngModel)]="userProfile.surname" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="City">City</label>
+                <app-city-select [city]="this.userProfile.city" (cityChange)="onCityChange($event)"></app-city-select>
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="personalNumber">Country</label>
+                <app-country-select [country]="this.userProfile.country"
+                    (countryChange)="onCountryChange($event)"></app-country-select>
+            </div>
+            <div class="form-field">
+                <label pLabel for="author-sex">Sex</label>
+                <app-admin-sex-select [authorSex]="this.userProfile.sex"
+                    (authorSexChange)="onAuthorSexChange($event)"></app-admin-sex-select>
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="phoneNumber">phoneNumber</label>
+                <input pInputText id="phoneNumber" [(ngModel)]="userProfile.phoneNumber" />
+            </div>
+
+            <div class="form-field">
+                <label pLabel for="birthday">birthDate</label>
+                <p-datepicker [(ngModel)]="userProfile.birthDate" />
+            </div>
+        </div>
+
+        <div class="form-field">
+            <label pLabel for="personalNumber">personalNumber</label>
+            <input pInputText id="personalNumber" [(ngModel)]="userProfile.personalNumber" />
+        </div>
+
+
+
+        <ng-template #footer>
+            <button type="button" pButton severity="secondary" variant="outlined" (click)="OnClose()">Cancel</button>
+            <button type="button" pButton (click)="EditProfile()">Save</button>
+        </ng-template>
+    </p-dialog>
+</div>
+<p-toast />

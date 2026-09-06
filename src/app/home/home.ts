@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Paginator } from 'primeng/paginator';
 import { AuthorServiceService } from '../Services/author-service.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
@@ -15,8 +14,8 @@ export class Home implements OnInit {
   page: number = 1
   first: number = 0;
   rows: number = 10;
-  public totalPage: number = 60;
-
+  public totalPage!: number;
+  public editUserProfile: any = {};
   cityId!: number;
   countryId!: number;
   authorSexId!: number;
@@ -28,6 +27,8 @@ export class Home implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private location: Location) { }
+  isEditVisible: boolean = false
+  isAddVisible: boolean = false
   ngOnInit(): void {
 
     this.getAuthors(this.authorSearch, this.cityId, this.countryId, this.authorSexId, this.page)
@@ -46,6 +47,8 @@ export class Home implements OnInit {
     this.first = event.first ?? 0;
     this.rows = event.rows ?? 10;
     this.page = event.page + 1;
+
+    this.getAuthors(this.authorSearch, this.cityId, this.countryId, this.authorSexId, this.page)
   }
 
 
@@ -114,10 +117,37 @@ export class Home implements OnInit {
           }
         })
 
-      },
-      reject: () => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
       }
     });
   }
+
+
+  onEditButton(author: any) {
+    this.editUserProfile = {
+      id: author.id,
+      name: author.name,
+      surname: author.surname,
+      phoneNumber: author.phoneNumber,
+      email: author.email,
+      sex: author.sex,
+      personalNumber: author.personalNumber,
+      birthDate: new Date(author.birthDate),
+      country: author.country,
+      city: author.city,
+      countryId: author.countryId,
+      cityId: author.cityId,
+      sexId: author.sexId
+    };
+
+    this.isEditVisible = true
+  }
+
+  closeEdit(): void {
+    this.isEditVisible = false;
+  }
+
+  isAddvisibleFunction() {
+    this.isAddVisible = !this.isAddVisible;
+  }
+
 }

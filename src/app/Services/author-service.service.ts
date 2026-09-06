@@ -14,7 +14,14 @@ export class AuthorServiceService {
     ) { }
 
 
-    GetAuthorsProfile(search: string, cityId: number, countryId: number, sexId: number, page: number): Observable<any> {
+    GetAuthorProfile(authorId: string): Observable<any> {
+
+        return this.http.get(
+            `${this.baseUrl}/Author/get-author/${authorId}`,
+        );
+    }
+
+    GetAuthorsProfile(search: string, cityId: number | null, countryId: number | null, sexId: number | null, page: number): Observable<any> {
         let params = new HttpParams();
 
         if (search?.trim()) {
@@ -38,6 +45,38 @@ export class AuthorServiceService {
         return this.http.get(
             `${this.baseUrl}/Author/get-authors`,
             { params }
+        );
+    }
+
+    GetAuthorSelect(search: string, authorselect: string, page: number): Observable<any> {
+        let params = new HttpParams();
+
+        if (search?.trim()) {
+            params = params.set('search', search.trim());
+        }
+        if (authorselect?.trim()) {
+            params = params.set('authorselect', authorselect.trim());
+        }
+        params = params.set('page', page);
+
+        return this.http.get(
+            `${this.baseUrl}/Author/get-select-authors`,
+            { params }
+        );
+    }
+
+    AddAuthorFunct(data: any): Observable<any> {
+        return this.http.post(
+            `${this.baseUrl}/Author/add-author`,
+            data
+        );
+    }
+
+    EditAuthorProfile(data: any, id: number): Observable<any> {
+
+        return this.http.put(
+            `${this.baseUrl}/Author/edit-author/${id}`,
+            data
         );
     }
 
