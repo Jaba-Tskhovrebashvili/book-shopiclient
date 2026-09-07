@@ -52,6 +52,14 @@ export class ProductServiceService {
         );
     }
 
+    GetProduct(productId: string): Observable<any> {
+
+        return this.http.get(
+            `${this.baseUrl}/Product/get-product/${productId}`
+
+        );
+    }
+
     GetProductTypes(search: string): Observable<any> {
         let params = new HttpParams();
 

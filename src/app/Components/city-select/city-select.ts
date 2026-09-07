@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
+import { City } from "../../interfaces/city.interface";
 
 @Component({
   selector: 'app-city-select',
@@ -8,13 +9,13 @@ import { AuthorServiceService } from '../../Services/author-service.service';
   templateUrl: './city-select.html',
 })
 export class CitySelect implements OnInit {
-  cities: any[] = [];
+  cities!: City[];
   @Input() city!: string;
   cityPage: number = 1;
   totalCityPage!: number;
   citySearch: string = '';
 
-  selectedcity: any;
+  selectedcity!: City;
 
   isLoadingcities = false;
 
@@ -120,7 +121,7 @@ export class CitySelect implements OnInit {
       this.cityPage = 1;
 
       this.GetCities('', 1);
-       this.cityChange.emit(event);
+      this.cityChange.emit(event);
       return;
     }
     if (event == null) {

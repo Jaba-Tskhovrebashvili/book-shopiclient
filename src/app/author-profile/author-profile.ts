@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthorServiceService } from '../Services/author-service.service';
 import { ProductServiceService } from '../Services/product-service.service';
-
+import { Author } from "../interfaces/author.interface";
+import { Product } from "../interfaces/product.interface"
 @Component({
   selector: 'app-author-profile',
   standalone: false,
@@ -11,9 +12,9 @@ import { ProductServiceService } from '../Services/product-service.service';
 })
 export class AuthorProfile implements OnInit {
   userId!: string;
-  userProfile: any = {}
+  userProfile!: Author;
   productPage: number = 1
-  products: any[] = [];
+  products!: Product[];
 
   first: number = 0;
   rows: number = 10;

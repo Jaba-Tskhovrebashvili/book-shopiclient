@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7289/api'
+  apiUrl: 'https://localhost:7289/api',
+  PrimeNgLicense: "eyJpZCI6IjRmZWFmMDBhLWQ0ZjItNDA5Ny05Mjk1LWFkOWY3MTI3MGQ0MSIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODgyNTAwMzIsImV4cCI6MTgxOTc4NjAzMn0.EHvM2DXs_G5tmskN8i2tjGH7blNdfu_fXY9tv_ONiOc1vzsLSE4fxyUmdJHOasFnhG6aVJWHZ78dhUaSYs0rAw"
 };

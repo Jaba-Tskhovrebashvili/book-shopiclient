@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   styleUrl: './edit-author.scss',
   templateUrl: './edit-author.html',
 })
-export class EditAuthor implements OnInit {
+export class EditAuthor {
   @Input() userProfile!: any;
   @Input() visible: boolean = true;
   @Output() closeEdit = new EventEmitter<any>();
@@ -17,11 +17,6 @@ export class EditAuthor implements OnInit {
   constructor(private authorServiceService: AuthorServiceService, private messageService: MessageService, private location: Location) { }
 
 
-
-  ngOnInit(): void {
-
-
-  }
   OnClose() {
     this.closeEdit.emit()
   }

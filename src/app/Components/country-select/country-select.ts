@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
-
+import { Country } from "../../interfaces/country.interface";
 
 @Component({
   selector: 'app-country-select',
@@ -10,13 +10,13 @@ import { AuthorServiceService } from '../../Services/author-service.service';
 })
 export class CountrySelect implements OnInit {
 
-  countries: any[] = [];
+  countries!: Country[];
 
   countryPage: number = 1;
   totalCountryPage!: number;
   countrySearch: string = '';
 
-  selectedCountry: any;
+  selectedCountry!: Country;
 
   isLoadingCountries = false;
 

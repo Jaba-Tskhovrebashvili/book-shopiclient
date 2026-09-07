@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthorServiceService } from '../Services/author-service.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
+import { Author } from "../interfaces/author.interface";
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,13 @@ export class Home implements OnInit {
   first: number = 0;
   rows: number = 10;
   public totalPage!: number;
-  public editUserProfile: any = {};
+  public editUserProfile!: Author;
   cityId!: number;
   countryId!: number;
   authorSexId!: number;
   authorSearch: string = "";
   searchTimeout: any;
-  authors: any[] = [];
+  authors!: Author[];
   constructor(private authorServiceService: AuthorServiceService,
     private cdr: ChangeDetectorRef,
     private confirmationService: ConfirmationService,

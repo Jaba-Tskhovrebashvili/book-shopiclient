@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
+import { Author } from "../../interfaces/author.interface";
 
 @Component({
   selector: 'app-add-uthor',
@@ -16,13 +17,13 @@ export class AddUthor {
 
   constructor(private authorServiceService: AuthorServiceService, private messageService: MessageService, private location: Location) { }
 
-  userProfile: any = {
+  userProfile: Author = {
     name: "",
     surname: "",
     phoneNumber: "",
     email: "",
     personalNumber: "",
-    birthDate:"",
+    birthDate: "",
     countryId: 0,
     cityId: 0,
     sexId: 0

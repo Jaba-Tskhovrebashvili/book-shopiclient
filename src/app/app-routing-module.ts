@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: "sign-up", loadChildren: () => import("./register/register-module").then((m) => m.RegisterModule), canActivate: [HomeGuardGuard] },
   { path: "sign-in", loadChildren: () => import("./authorisation/authorisation-module").then((m) => m.AuthorisationModule), canActivate: [HomeGuardGuard] },
   { path: "author-profile/:id", loadChildren: () => import("./author-profile/author-profile-module").then((m) => m.AuthorProfileModule), canActivate: [AuthGuardGuard] },
-  { path: "products", loadChildren: () => import('./product/product-module').then((m) => m.ProductModule), canActivate: [AuthGuardGuard] }
+  { path: "products", loadChildren: () => import('./product/product-module').then((m) => m.ProductModule), canActivate: [AuthGuardGuard] },
+  { path: "product-profile/:id", loadChildren: () => import("./product-profile/product-profile-module").then((m) => m.ProductProfileModule), canActivate: [AuthGuardGuard] }
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { ProductServiceService } from '../../Services/product-service.service';
+import { PublishHouse } from "../../interfaces/publishhouse.interface";
 
 @Component({
   selector: 'app-publish-select',
@@ -9,7 +10,7 @@ import { ProductServiceService } from '../../Services/product-service.service';
 })
 export class PublishSelect {
 
-  publishtypes: any[] = [];
+  publishtypes!: PublishHouse[];
 
   publishPage: number = 1;
 
@@ -19,7 +20,7 @@ export class PublishSelect {
   totalPublishPage!: number;
   publishTypeSearch: string = '';
 
-  selectedPublishType: any;
+  selectedPublishType!: PublishHouse;
 
   @Output() publishTypeChange = new EventEmitter<any>();
 

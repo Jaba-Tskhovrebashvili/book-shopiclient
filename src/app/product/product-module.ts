@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from './product';
+import { Products } from './product';
 import { HeaderModule } from '../header/header-module';
 import { ProductTypeSelectModule } from '../Components/product-type-select/product-type-select-module';
 import { ProductRoutingModule } from './product-routing-module';
@@ -19,7 +19,7 @@ import { EditProductModule } from '../Components/edit-product/edit-product-modul
 
 
 @NgModule({
-  declarations: [Product],
+  declarations: [Products],
   imports: [CommonModule,
     ProductRoutingModule,
     ProductTypeSelectModule,

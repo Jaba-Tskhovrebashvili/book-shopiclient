@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProductServiceService } from '../Services/product-service.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
+import { Product } from "../interfaces/product.interface";
 
 @Component({
   selector: 'app-product',
@@ -9,18 +10,18 @@ import { Location } from '@angular/common';
   styleUrl: './product.scss',
   templateUrl: './product.html',
 })
-export class Product implements OnInit {
+export class Products implements OnInit {
   page: number = 1;
   ProductType!: number;
   PublishType!: number;
   productSearch: string = "";
-  products: any[] = [];
+  products!: Product[];
   public totalPage!: number;
   first: number = 0;
   rows: number = 10;
   editVisible: boolean = false
   isEdirProduct: boolean = false;
-  ProductValue: any;
+  ProductValue!: Product;
 
 
   constructor(private productServiceService: ProductServiceService, private cdr: ChangeDetectorRef,
@@ -105,7 +106,7 @@ export class Product implements OnInit {
     this.editVisible = !this.editVisible
   }
 
-  onVisible(){
+  onVisible() {
     this.isEdirProduct = !this.isEdirProduct;
   }
   OnEditProductVisible(product: any) {

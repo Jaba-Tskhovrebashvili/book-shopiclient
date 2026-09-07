@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
+import { Component, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { ProductServiceService } from '../../Services/product-service.service';
+import { ProductType } from "../../interfaces/product-type.interface";
 
 
 @Component({
@@ -9,13 +10,13 @@ import { ProductServiceService } from '../../Services/product-service.service';
   templateUrl: './product-type-select.html',
 })
 export class ProductTypeSelect {
-  producttypes: any[] = [];
+  producttypes!: ProductType[];
   @Input() productType!: string;
 
   totalTypePage!: number;
   productTypeSearch: string = '';
 
-  selectedProductType: any;
+  selectedProductType!: ProductType;
 
   @Output() productTypeChange = new EventEmitter<any>();
 

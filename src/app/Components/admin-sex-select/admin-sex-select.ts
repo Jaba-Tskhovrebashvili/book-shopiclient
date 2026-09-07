@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthorServiceService } from '../../Services/author-service.service';
+import { AuthorSex } from "../../interfaces/authorsex.interface";
 
 @Component({
   selector: 'app-admin-sex-select',
@@ -9,8 +10,8 @@ import { AuthorServiceService } from '../../Services/author-service.service';
 })
 export class AdminSexSelect implements OnInit {
 
-  author_sex: any[] = [];
-  selectedSex: any;
+  author_sex!: AuthorSex[];
+  selectedSex!: AuthorSex;
 
   @Output() authorSexChange = new EventEmitter<any>();
   @Input() authorSex!: string;

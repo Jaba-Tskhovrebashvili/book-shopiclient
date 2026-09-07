@@ -1,0 +1,31 @@
+<app-header />
+<div class="product-container">
+    <div class="product-card">
+        <div class="product-field"> <span class="label">სახელი:</span> <span class="value">{{
+                productProfile?.name
+                }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">ანოტაცია:</span> <span class="value">{{
+                productProfile?.annotation
+                }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">ტიპი:</span> <span class="value">{{
+                productProfile?.product_Type?.name }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">ISBN:</span> <span class="value">{{
+                productProfile?.isbn
+                }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">გამოშვების თარიღი:</span> <span class="value">{{
+                productProfile?.release_date | date:'dd.MM.yyyy' }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">გამომცემლობა:</span> <span class="value"> {{
+                productProfile?.publishing_house?.name }} </span> </div> <p-divider />
+        <div class="product-field"> <span class="label">გვერდების რაოდენობა:</span> <span class="value">{{
+                productProfile?.page_quantity
+                }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">მისამართი:</span> <span class="value">{{
+                productProfile?.address
+                }}</span> </div> <p-divider />
+        <div class="product-field"> <span class="label">ავტორები:</span> <span class="value">
+                <ul *ngFor="let author of productProfile?.authors" style="list-style: none;">
+                    <li>{{author?.name}} {{author?.surname}}</li>
+                </ul>
+            </span> </div>
+    </div>
+</div>

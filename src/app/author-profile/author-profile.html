@@ -3,32 +3,32 @@
 <div class="author-container">
         <div class="author-card">
                 <div class="author-field"> <span class="label">სახელი:</span> <span class="value">{{
-                                this.userProfile.name
+                                userProfile?.name
                                 }}</span> </div> <p-divider />
                 <div class="author-field"> <span class="label">გვარი:</span> <span class="value">{{
-                                this.userProfile.surname
+                                userProfile?.surname
                                 }}</span> </div> <p-divider />
                 <div class="author-field"> <span class="label">ტელეფონი:</span> <span class="value">{{
-                                this.userProfile.phoneNumber }}</span> </div> <p-divider />
+                                userProfile?.phoneNumber }}</span> </div> <p-divider />
                 <div class="author-field"> <span class="label">ელფოსტა:</span> <span class="value">{{
-                                this.userProfile.email
+                                userProfile?.email
                                 }}</span> </div> <p-divider />
                 <div class="author-field"> <span class="label">პირადი ნომერი:</span> <span class="value">{{
-                                this.userProfile.personalNumber }}</span> </div> <p-divider />
+                                userProfile?.personalNumber }}</span> </div> <p-divider />
                 <div class="author-field"> <span class="label">დაბადების თარიღი:</span> <span class="value"> {{
-                                this.userProfile.birthDate | date:'dd.MM.yyyy' }} </span> </div> <p-divider />
+                                userProfile?.birthDate | date:'dd.MM.yyyy' }} </span> </div> <p-divider />
                 <div class="author-field"> <span class="label">ქვეყანა:</span> <span class="value">{{
-                                this.userProfile.country
+                                userProfile?.country
                                 }}</span> </div> <p-divider />
                 <div class="author-field"> <span class="label">ქალაქი:</span> <span class="value">{{
-                                this.userProfile.city
+                                userProfile?.city
                                 }}</span> </div> <p-divider />
-                <div class="author-field"> <span class="label">სქესი:</span> <span class="value">{{ this.userProfile.sex
+                <div class="author-field"> <span class="label">სქესი:</span> <span class="value">{{ userProfile?.sex
                                 }}</span> </div>
         </div>
 </div>
 
-<p-table [value]="this.products" [tableStyle]="{ 'min-width': '40rem' }" *ngIf="this.products.length!=0">
+<p-table [value]="products" [tableStyle]="{ 'min-width': '40rem' }" *ngIf="products?.length!=0">
         <ng-template #header>
                 <tr>
                         <th>სახელი</th>
@@ -43,9 +43,9 @@
         </ng-template>
         <ng-template #body let-product>
                 <tr>
-                        <td>{{ product.name }}</td>
+                        <td><a [routerLink]="[`/product-profile/${product.id}`]" target="_blank">{{ product.name }}</a></td>
                         <td>{{ product.annotation | slice:0:50 }}
-                                <span *ngIf="product.annotation.length > 50">...</span>
+                                <span *ngIf="product?.annotation?.length > 50">...</span>
                         </td>
                         <td>{{ product.product_Type?.name }}</td>
                         <td>{{ product.isbn }}</td>
@@ -57,7 +57,7 @@
         </ng-template>
 </p-table>
 
-<div class="flex justify-center" *ngIf="this.products.length!=0">
+<div class="flex justify-center" *ngIf="products?.length!=0">
         <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
                 [totalRecords]=[this.totalPage] />
 </div>
