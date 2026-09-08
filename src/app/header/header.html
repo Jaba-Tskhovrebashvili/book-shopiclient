@@ -6,12 +6,12 @@
             </a>
         </div>
         <div class="user-info">
-            <a [routerLink]="['/home']">
+            <a [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <div class="user-avatar"> {{ this.userServiceService.myUser.name?.charAt(0)?.toUpperCase() }} </div>
                 <span class="user-name"> {{ this.userServiceService.myUser.name }}
                 </span>
             </a>
-            <a [routerLink]="['/products']">
+            <a [routerLink]="['/products']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <span>Products</span>
             </a>
         </div>
