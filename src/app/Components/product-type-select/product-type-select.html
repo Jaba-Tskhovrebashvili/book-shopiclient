@@ -1,5 +1,5 @@
 <p-select [options]="producttypes" [(ngModel)]="selectedProductType" optionLabel="name" [filter]="true"
-    [showClear]="true" placeholder="Select a Type" class="w-full md:w-56" [virtualScroll]="true"
+    [showClear]="true" placeholder="აირჩიე ტიპი" class="w-full md:w-56" [virtualScroll]="true"
     [virtualScrollItemSize]="30" (ngModelChange)="onTypeChange($event)" (onFilter)="onTypeFilter($event)">
     <ng-template #selectedItem let-selectedOption>
         <div class="flex items-center gap-2">

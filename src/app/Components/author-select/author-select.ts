@@ -36,7 +36,7 @@ export class AuthorSelect implements OnInit {
     const scrollHeight = target.scrollHeight;
 
     if (
-      scrollTop + clientHeight >= scrollHeight - 10 && this.userPage < this.totalUserPage
+      scrollTop + clientHeight >= scrollHeight - 30 && this.userPage < this.totalUserPage
     ) {
 
       this.userPage++;
@@ -59,7 +59,7 @@ export class AuthorSelect implements OnInit {
       this.authorselect = authorStrings;
       this.getUsers(this.userSearch, authorStrings, this.userPage);
     } else {
-      this.getUsers(this.userSearch, this.authorselect, this.userPage);
+      this.getUsers(this.userSearch, "", this.userPage);
 
     }
   }
@@ -67,7 +67,7 @@ export class AuthorSelect implements OnInit {
   getUsers(search: string, authorselect: string, page: number) {
     this.authorServiceService.GetAuthorSelect(search, authorselect, page).subscribe({
       next: (response) => {
-        if (this.userPage == 1) {
+        if (page == 1) {
           this.members = response.authors.authors.map((user: any) => ({
             id: user.id,
             name: user.name + ' ' + user.surname
@@ -83,6 +83,7 @@ export class AuthorSelect implements OnInit {
         this.userPage = page;
 
         this.totalUserPage = response.authors.totalPages;
+
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -95,6 +96,7 @@ export class AuthorSelect implements OnInit {
     this.userSearch = event?.filter;
     this.userPage = 1
     this.getUsers(this.userSearch, this.authorselect, this.userPage);
+    console.log("safsgdg", event)
   }
 
   getFirstName(member: Member): string {
@@ -115,7 +117,6 @@ export class AuthorSelect implements OnInit {
 
   }
   onSelectedChange(event: any) {
-    console.log("safsgdg", event)
     const authorStrings: any = event.map((item: any) => item.id).join(",")
     this.authorselect = authorStrings
     this.userPage = 1

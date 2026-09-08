@@ -30,6 +30,15 @@ export class Products implements OnInit {
     private location: Location
   ) { }
   ngOnInit(): void {
+
+    const localPage = localStorage.getItem("productPage");
+    if (localPage == null) {
+      localStorage.setItem("productPage", String(this.page));
+    } else {
+      this.page = Number(localStorage.getItem("productPage"));
+      this.first = (this.page - 1) * 10;
+    }
+
     this.GetProducts(this.ProductType, this.PublishType, this.productSearch, this.page);
   }
 
@@ -67,6 +76,7 @@ export class Products implements OnInit {
     this.first = event.first ?? 0;
     this.rows = event.rows ?? 10;
     this.page = event.page + 1;
+    localStorage.setItem("productPage", String(event.page + 1));
     this.loadProducts()
   }
 
@@ -77,6 +87,8 @@ export class Products implements OnInit {
       message: 'ნამდვილად გსურთ პროდუქტის წაშლა??',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
+      acceptLabel: "დიახ",
+      rejectLabel: "არა",
       accept: () => {
         this.productServiceService.DeleteProduct(productId).subscribe({
           next: (response) => {

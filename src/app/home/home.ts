@@ -32,6 +32,14 @@ export class Home implements OnInit {
   isAddVisible: boolean = false
   ngOnInit(): void {
 
+    const localPage = localStorage.getItem("page");
+    if (localPage == null) {
+      localStorage.setItem("page", String(this.page));
+    } else {
+      this.page = Number(localStorage.getItem("page"));
+      this.first = (this.page - 1) * 10;
+    }
+
     this.getAuthors(this.authorSearch, this.cityId, this.countryId, this.authorSexId, this.page)
 
   }
@@ -48,7 +56,7 @@ export class Home implements OnInit {
     this.first = event.first ?? 0;
     this.rows = event.rows ?? 10;
     this.page = event.page + 1;
-
+    localStorage.setItem("page", String(event.page + 1));
     this.getAuthors(this.authorSearch, this.cityId, this.countryId, this.authorSexId, this.page)
   }
 
@@ -97,6 +105,8 @@ export class Home implements OnInit {
       message: 'ნამდვილად გსურთ ავტორის წაშლა??',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
+      acceptLabel: 'დიახ',
+      rejectLabel: 'არაა',
       accept: () => {
         this.authorServiceService.DeleteAuthor(authorId).subscribe({
           next: (response) => {

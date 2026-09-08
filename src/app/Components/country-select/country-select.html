@@ -1,5 +1,5 @@
 <p-select [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" [showClear]="true"
-    placeholder="Select a Country" class="w-full md:w-56" [virtualScroll]="true" [virtualScrollItemSize]="20"
+    placeholder="აირჩიე ქვეყანა" class="w-full md:w-56" [virtualScroll]="true" [virtualScrollItemSize]="20"
     [virtualScrollOptions]="{ onScroll: myScrollHandler }" (ngModelChange)="onCountryChange($event)"
     (onFilter)="onCountryFilter($event)">
     <ng-template #selectedItem let-selectedOption>

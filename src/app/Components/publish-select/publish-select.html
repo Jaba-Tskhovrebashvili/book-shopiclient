@@ -1,5 +1,5 @@
 <p-select [options]="publishtypes" [(ngModel)]="selectedPublishType" optionLabel="name" [filter]="true"
-    [showClear]="true" placeholder="Select a Publish" class="w-full md:w-56" [virtualScroll]="true"
+    [showClear]="true" placeholder="გამომცემლობა" class="w-full md:w-56" [virtualScroll]="true"
     [virtualScrollItemSize]="30" [virtualScrollOptions]="{ onScroll: myScrollHandler }"
     (ngModelChange)="onTypeChange($event)" (onFilter)="onTypeFilter($event)">
     <ng-template #selectedItem let-selectedOption>

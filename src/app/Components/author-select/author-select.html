@@ -1,8 +1,8 @@
 <div class="flex justify-center">
-    <p-select [options]="members" [(ngModel)]="selected" [multiple]="true" optionLabel="name" optionLabel="name"
-        [showClear]="true" [filter]="true" placeholder="Select Members" class="w-full"
-        [virtualScrollOptions]="{ onScroll: myScrollHandler }" [virtualScroll]="true" [virtualScrollItemSize]="30"
-        (onFilter)="onuserFilter($event)" (ngModelChange)="onSelectedChange($event)">
+    <p-select [options]="members" [(ngModel)]="selected" [multiple]="true" optionLabel="name" [showClear]="true"
+        [filter]="true" placeholder="აირჩიე ავტორები" class="w-full md:w-56" [virtualScroll]="true"
+        [virtualScrollItemSize]="30" [virtualScrollOptions]="{ onScroll: myScrollHandler }"
+        (onFilter)="onuserFilter($event)" (ngModelChange)="onSelectedChange($event)" scrollHeight="180px">
         <ng-template let-member #item>
             <div class="flex items-center gap-2">
 

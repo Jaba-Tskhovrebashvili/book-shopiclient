@@ -3,7 +3,7 @@
         (onHide)="changeVisible()">
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <div class="form-field">
-                <label pLabel for="name">Name</label>
+                <label pLabel for="name">სახელი</label>
                 <input pInputText id="name" [(ngModel)]="userProfile.name" />
             </div>
             <div class="form-field">
@@ -11,37 +11,37 @@
                 <input pInputText id="email" [(ngModel)]="userProfile.email" />
             </div>
             <div class="form-field">
-                <label pLabel for="surname">Surname</label>
+                <label pLabel for="surname">გვარი</label>
                 <input pInputText id="surname" [(ngModel)]="userProfile.surname" />
             </div>
 
             <div class="form-field">
-                <label pLabel for="City">City</label>
+                <label pLabel for="City">ქალაქი</label>
                 <app-city-select (cityChange)="onCityChange($event)"></app-city-select>
             </div>
 
             <div class="form-field">
-                <label pLabel for="personalNumber">Country</label>
+                <label pLabel for="personalNumber">ქვეყანა</label>
                 <app-country-select (countryChange)="onCountryChange($event)"></app-country-select>
             </div>
             <div class="form-field">
-                <label pLabel for="author-sex">Sex</label>
+                <label pLabel for="author-sex">სქესი</label>
                 <app-admin-sex-select (authorSexChange)="onAuthorSexChange($event)"></app-admin-sex-select>
             </div>
 
             <div class="form-field">
-                <label pLabel for="phoneNumber">phoneNumber</label>
+                <label pLabel for="phoneNumber">ტელ.ნომერი</label>
                 <input pInputText id="phoneNumber" [(ngModel)]="userProfile.phoneNumber" />
             </div>
 
             <div class="form-field">
-                <label pLabel for="birthday">birthDate</label>
+                <label pLabel for="birthday">დაბადების თარიღი</label>
                 <p-datepicker [(ngModel)]="userProfile.birthDate" />
             </div>
         </div>
 
         <div class="form-field">
-            <label pLabel for="personalNumber">personalNumber</label>
+            <label pLabel for="personalNumber">პირადი ნომერი</label>
             <input pInputText id="personalNumber" [(ngModel)]="userProfile.personalNumber" />
         </div>
 
@@ -49,8 +49,8 @@
 
         <ng-template #footer>
             <button type="button" pButton severity="secondary" variant="outlined"
-                (click)="changeVisible()">Cancel</button>
-            <button type="button" pButton (click)="addAuthor()">Add</button>
+                (click)="changeVisible()">დახურვა</button>
+            <button type="button" pButton (click)="addAuthor()">დამატება</button>
         </ng-template>
     </p-dialog>
 </div>
